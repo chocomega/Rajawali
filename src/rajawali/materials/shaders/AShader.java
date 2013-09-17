@@ -908,6 +908,38 @@ public abstract class AShader extends AShaderBase {
 		return var;
 	}
 	
+	public ShaderVar mix(ShaderVar var1, ShaderVar var2, ShaderVar var3)
+	{
+		ShaderVar var = getInstanceForDataType(var1.getDataType());
+		var.setName("mix(" + var1.getName() + ", " + var2.getName() + ", " + var3.getName() + ")");
+		var.mInitialized = true;
+		return var;
+	}
+	
+	public ShaderVar mix(ShaderVar var1, ShaderVar var2, float value3)
+	{
+		ShaderVar var = getInstanceForDataType(var1.getDataType());
+		var.setName("mix(" + var1.getName() + ", " + var2.getName() + ", " + Float.toString(value3) + ")");
+		var.mInitialized = true;
+		return var;
+	}
+	
+	public ShaderVar smoothstep(ShaderVar var1, ShaderVar var2, ShaderVar var3)
+	{
+		ShaderVar var = getInstanceForDataType(var1.getDataType());
+		var.setName("smoothstep(" + var1.getName() + ", " + var2.getName() + ", " + var3.getName() + ")");
+		var.mInitialized = true;
+		return var;
+	}
+	
+	public ShaderVar smoothstep(float value1, float value2, ShaderVar var3)
+	{
+		ShaderVar var = getInstanceForDataType(var3.getDataType());
+		var.setName("smoothstep(" + Float.toString(value1) + ", " + Float.toString(value2) + ", " + var3.getName() + ")");
+		var.mInitialized = true;
+		return var;
+	}
+	
 	public void discard()
 	{
 		mShaderSB.append("discard;\n");
