@@ -940,6 +940,22 @@ public abstract class AShader extends AShaderBase {
 		return var;
 	}
 	
+	public ShaderVar greaterThan(ShaderVar var1, ShaderVar var2)
+	{
+		ShaderVar var = getInstanceForDataType(var1.getDataType());
+		var.setName("greaterThan(" + var1.getName() + ", " + var2.getName() + ")");
+		var.mInitialized = true;
+		return var;
+	}
+	
+	public ShaderVar lessThanEqual(ShaderVar var1, ShaderVar var2)
+	{
+		ShaderVar var = getInstanceForDataType(var1.getDataType());
+		var.setName("lessThanEqual(" + var1.getName() + ", " + var2.getName() + ")");
+		var.mInitialized = true;
+		return var;
+	}
+	
 	public void discard()
 	{
 		mShaderSB.append("discard;\n");
