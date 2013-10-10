@@ -697,7 +697,7 @@ public class RajawaliScene extends AFrameTask {
 		mVMatrix = mCamera.getViewMatrix();
 		mPMatrix = mCamera.getProjectionMatrix();
 		//Pre-multiply View and Projection matricies once for speed
-		mVPMatrix = mPMatrix.clone().multiply(mVMatrix);
+		mVPMatrix.setAll(mPMatrix).multiply(mVMatrix);
 		mInvVPMatrix.setAll(mVPMatrix).inverse();
 
 		if (mSkybox != null) {

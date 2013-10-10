@@ -107,16 +107,16 @@ public class Frustum {
 		if (mBoundingBox == null) {
 			mBoundingBox = new BoundingBox();
 		}
-		Vector3 min = new Vector3();
-		Vector3 max = new Vector3();
+		Vector3 min = mBoundingBox.getMin();
+		Vector3 max = mBoundingBox.getMax();
 		min.setAll(planePoints[0]);
 		min.x = planePoints[5].x;
 		min.y = planePoints[5].y;
 		max.setAll(planePoints[7]);
 		//Log.i("Rajawali", "Min/Max: " + min + "/" + max);
 		mTmpMatrix.identity();
-		mBoundingBox.setMin(min);
-		mBoundingBox.setMax(max);
+		//mBoundingBox.setMin(min);
+		//mBoundingBox.setMax(max);
 		mBoundingBox.calculatePoints();
 		mBoundingBox.transform(mTmpMatrix);
 		//Log.i("Rajawali", "Camera bounds: " + mBoundingBox);

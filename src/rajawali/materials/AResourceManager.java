@@ -54,6 +54,19 @@ public abstract class AResourceManager extends AFrameTask {
 		mRenderers.remove(renderer);
 	}
 	
+	// Hack quand il y a plusieurs instances de Renderer
+	// Les ResourceManager sont des singletons !
+	//
+	public boolean setCurrentRenderer(RajawaliRenderer renderer)
+	{
+		if( mRenderers.contains(renderer) ) {
+			mRenderer = renderer;
+			return true;
+		}
+		else
+			return false;
+	}
+	
 	/**
 	 * Sets the application context
 	 * 
