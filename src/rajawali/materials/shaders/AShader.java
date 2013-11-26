@@ -976,6 +976,22 @@ public abstract class AShader extends AShaderBase {
 		return var;
 	}
 	
+	public ShaderVar step(ShaderVar var1, ShaderVar var2)
+	{
+		ShaderVar var = getInstanceForDataType(var1.getDataType());
+		var.setName("step(" + var1.getName() + ", " + var2.getName() + ")");
+		var.mInitialized = true;
+		return var;
+	}
+	
+	public ShaderVar step(float value1, ShaderVar var2)
+	{
+		ShaderVar var = getInstanceForDataType(var2.getDataType());
+		var.setName("step(" + Float.toString(value1) + ", " + var2.getName() + ")");
+		var.mInitialized = true;
+		return var;
+	}
+	
 	public ShaderVar greaterThan(ShaderVar var1, ShaderVar var2)
 	{
 		ShaderVar var = getInstanceForDataType(var1.getDataType());
