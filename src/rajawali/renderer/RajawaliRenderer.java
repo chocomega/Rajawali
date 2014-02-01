@@ -22,6 +22,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
@@ -585,14 +587,13 @@ public class RajawaliRenderer implements GLSurfaceView.Renderer, INode {
 	public void onSurfaceCreated(GL10 gl, EGLConfig config) {
 		RajLog.setGL10(gl);
 		Capabilities.getInstance();
-		
-		String[] versionString = (gl.glGetString(GL10.GL_VERSION)).split(" ");
-		if (versionString.length >= 3) {
-			String[] versionParts = versionString[2].split("\\.");
-			if (versionParts.length >= 2) {
-				mGLES_Major_Version = Integer.parseInt(versionParts[0]);
-				mGLES_Minor_Version = Integer.parseInt(versionParts[1]);
-			}
+			
+		//In case we cannot parse the version number, assume OpenGL ES 2.0
+		Matcher matcher = Pattern.compile("OpenGL ES ([0-9]+)\\.([0-9]+)").matcher(gl.glGetString(GL10.GL_VERSION));
+		if(matcher.find())
+		{
+			mGLES_Major_Version = Integer.parseInt(matcher.group(1));
+			mGLES_Minor_Version = Integer.parseInt(matcher.group(2));
 		}
 		
 		supportsUIntBuffers = gl.glGetString(GL10.GL_EXTENSIONS).indexOf("GL_OES_element_index_uint") > -1;
